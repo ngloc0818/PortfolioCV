@@ -1,16 +1,5 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": ".output/public",
-  "serverless": {
-    "default": {
-      "runtime": "nodejs20.x",
-      "handler": ".output/server/index.mjs",
-      "launcherType": "Nodejs"
-    }
-  },
-  "functions": {
-    "api/[...].js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  "outputDirectory": "dist",
+  "framework": "vite"
 }
