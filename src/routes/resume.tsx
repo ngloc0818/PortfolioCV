@@ -33,7 +33,7 @@ const achievements = [
     
     // ✅ BƯỚC QUAN TRỌNG: 
     // Hãy dán đường link ảnh bạn lấy từ GitHub vào bên trong 2 dấu ngoặc kép dưới đây:
-    image: "https://github.com/ngloc0818/portfolioCV/issues/1#issue-4681517156", 
+    image: "https://github.com/user-attachments/assets/d9381901-a9d5-4ba2-a79a-eaf22e33d9bc", 
   },
 ];
 
