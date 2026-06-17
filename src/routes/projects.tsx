@@ -26,9 +26,9 @@ type Project = {
   tech: string[];
   role: string;
   star: Star;
-  // Đã thêm thuộc tính 'src' vào đây để lưu đường dẫn ảnh
   images: { src: string; caption: string; tone: "blue" | "green" | "beige" }[];
   accent: "blue" | "green" | "beige";
+  links?: { label: string; url: string; icon: string; tone: "blue" | "green" | "beige" }[];
 };
 
 const projects: Project[] = [
@@ -50,11 +50,19 @@ const projects: Project[] = [
       result: "Thiết bị chạy ổn định liên tục, độ trễ cảnh báo < 5 giây. Demo thành công ở môn đồ án, được đánh giá A.",
     },
     images: [
-      // Nhớ copy ảnh của bạn vào thư mục public/images/ và sửa tên file ở đây cho khớp
       { src: "public/images/mach-alitum.png", caption: "Sơ đồ nguyên lý (Altium)", tone: "blue" },
       { src: "public/images/mach-thuc-te.jpg", caption: "Board mạch thực tế", tone: "beige" },
       { src: "public/images/Blynk.jpg", caption: "Dashboard Blynk", tone: "green" },
     ],
+    // DỮ LIỆU LINK CỦA BẠN NẰM Ở ĐÂY
+    links: [
+      { 
+        label: "Link Notion", 
+        url: "https://www.notion.so/D-n-c-nh-n-374b0195215d80318fc7cda018ca7aa9?source=copy_link", 
+        icon: "notion", 
+        tone: "beige" 
+      },
+    ]
   },
   {
     title: "Thiết kế mô hình cảm biến nhiệt độ-độ ẩm",
@@ -121,7 +129,6 @@ function Projects() {
               ))}
             </div>
 
-            {/* Đã cập nhật Image gallery để hiển thị ảnh thật */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-7">
               {p.images.map((img, i) => (
                 <div
@@ -134,7 +141,6 @@ function Projects() {
                       alt={img.caption} 
                       className="w-full h-full object-cover transition-transform hover:scale-105"
                       onError={(e) => {
-                        // Hiển thị khung lỗi nếu tên ảnh bị sai
                         e.currentTarget.style.display = 'none';
                         e.currentTarget.parentElement!.innerHTML = '<div class="grid place-items-center h-full text-xs opacity-50">Lỗi: Không tìm thấy ảnh</div>';
                       }}
@@ -145,7 +151,7 @@ function Projects() {
               ))}
             </div>
 
-            {/* STAR */}
+            {/* KHỐI STAR */}
             <div className="grid sm:grid-cols-2 gap-4">
               <StarBlock label="S — Situation" body={p.star.situation} tone="beige" />
               <StarBlock label="T — Task" body={p.star.task} tone="blue" />
@@ -166,6 +172,27 @@ function Projects() {
                 <StarBlock label="R — Result" body={p.star.result} tone="beige" />
               </div>
             </div>
+
+            {/* HIỂN THỊ LINK NẾU CÓ */}
+            {p.links && p.links.length > 0 && (
+              <div className="flex flex-wrap gap-3 mt-6 pt-6 border-t-[1.5px] border-foreground/10">
+                {p.links.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`sticker sticker-hover px-4 py-2 font-mono text-sm flex items-center gap-2 ${toneClass[link.tone]}`}
+                  >
+                    <span className="font-bold text-base">
+                      {link.icon === "notion" ? "📓" : link.icon}
+                    </span> 
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
+            
           </article>
         ))}
       </div>
