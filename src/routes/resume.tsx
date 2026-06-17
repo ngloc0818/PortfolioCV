@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 
 // --- 1. IMPORT ẢNH TỪ THƯ MỤC ASSETS ---
-import imgChungNhan from "@/assets/chung-nhan.jpg";
+import imgChungNhan from "../assets/chung-nhan.jpg";
 
 export const Route = createFileRoute("/resume")({
   head: () => ({
