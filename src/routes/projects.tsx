@@ -50,9 +50,9 @@ const projects: Project[] = [
       result: "Thiết bị chạy ổn định liên tục, độ trễ cảnh báo < 5 giây. Demo thành công ở môn đồ án, được đánh giá A.",
     },
     images: [
-      { src: "public/images/mach-alitum.png", caption: "Sơ đồ nguyên lý (Altium)", tone: "blue" },
-      { src: "public/images/mach-thuc-te.jpg", caption: "Board mạch thực tế", tone: "beige" },
-      { src: "public/images/Blynk.jpg", caption: "Dashboard Blynk", tone: "green" },
+      { src: "/images/mach-alitum.png", caption: "Sơ đồ nguyên lý (Altium)", tone: "blue" },
+      { src: "/images/mach-thuc-te.jpg", caption: "Board mạch thực tế", tone: "beige" },
+      { src: "/images/Blynk.jpg", caption: "Dashboard Blynk", tone: "green" },
     ],
     // DỮ LIỆU LINK CỦA BẠN NẰM Ở ĐÂY
     links: [
@@ -81,9 +81,9 @@ const projects: Project[] = [
       result: "Thiết bị hoạt động ổn định, sai số nhiệt độ ±1°C, tầm phát ZigBee ~15m trong nhà. Hoàn thành đúng tiến độ đồ án",
     },
     images: [
-      { src: "public/images/node-phat-zigbee.png", caption: "Sơ đồ kết nối khối phát", tone: "green" },
-      { src: "public/images/node-thu-zigbee.png", caption: "Sơ đồ kết nối khối thu", tone: "beige" },
-      { src: "public/images/mach-zigbee.jpg", caption: "Mạch hoạt động hiển thị LCD", tone: "blue" },
+      { src: "/images/node-phat-zigbee.png", caption: "Sơ đồ kết nối khối phát", tone: "green" },
+      { src: "/images/node-thu-zigbee.png", caption: "Sơ đồ kết nối khối thu", tone: "beige" },
+      { src: "/images/mach-zigbee.jpg", caption: "Mạch hoạt động hiển thị LCD", tone: "blue" },
     ],
   },
 ];
