@@ -1,9 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 
-// --- 1. IMPORT ẢNH TỪ THƯ MỤC ASSETS ---
-import imgChungNhan from "../assets/chung-nhan.jpg";
-
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
@@ -33,8 +30,10 @@ const achievements = [
     year: "Tháng 01/2026",
     title: "Thực tập sinh — Brother BIVN",
     desc: "Tìm hiểu quy trình sản xuất thực tiễn, quy chuẩn RBA và tiếp cận môi trường làm việc công nghiệp.",
-    // --- 2. SỬ DỤNG BIẾN ẢNH ĐÃ IMPORT Ở TRÊN (Không dùng dấu ngoặc kép) ---
-    image: imgChungNhan, 
+    
+    // ✅ BƯỚC QUAN TRỌNG: 
+    // Hãy dán đường link ảnh bạn lấy từ GitHub vào bên trong 2 dấu ngoặc kép dưới đây:
+    image: "https://github.com/ngloc0818/portfolioCV/issues/1#issue-4681517156", 
   },
 ];
 
