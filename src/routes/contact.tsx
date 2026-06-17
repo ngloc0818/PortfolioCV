@@ -21,15 +21,46 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Thêm trạng thái loading
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  function onSubmit(e: React.FormEvent) {
+  // Đã sửa thành hàm async để gọi API Web3Forms
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // Mở app mail mặc định với nội dung đã điền sẵn
-    const subject = encodeURIComponent(`[Portfolio] Tin nhắn từ ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:phucloc.dev@example.com?subject=${subject}&body=${body}`;
-    setSent(true);
+    setIsSubmitting(true); // Bắt đầu gửi
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          // 👇 DÁN MÃ ACCESS KEY CỦA BẠN VÀO TRONG CẶP NGOẶC KÉP BÊN DƯỚI 👇
+          access_key: "be788ceb-424c-402a-bc47-97d584536ebc", 
+          
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          subject: `[Portfolio] Tin nhắn mới từ ${form.name}`,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSent(true);
+        setForm({ name: "", email: "", message: "" }); // Xóa trắng form sau khi gửi thành công
+        
+        // Ẩn thông báo thành công sau 5 giây
+        setTimeout(() => setSent(false), 5000);
+      }
+    } catch (error) {
+      console.error("Lỗi khi gửi tin nhắn:", error);
+      alert("Đã có lỗi xảy ra. Bạn vui lòng thử lại sau nhé!");
+    } finally {
+      setIsSubmitting(false); // Gửi xong thì tắt trạng thái loading
+    }
   }
 
   return (
@@ -73,20 +104,23 @@ function Contact() {
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               className="w-full rounded-md border border-input bg-paper px-3 py-2 font-sans resize-y focus:outline-none focus:ring-2 focus:ring-ring"
-              placeholder="Mình muốn rủ bạn làm một con robot biết pha cà phê..."
+              placeholder="Mình muốn rủ bạn làm một dự án..."
             />
           </Field>
 
           <button
             type="submit"
-            className="sticker sticker-hover bg-pastel-green px-5 py-2.5 font-mono text-sm"
+            disabled={isSubmitting}
+            className={`sticker sticker-hover bg-pastel-green px-5 py-2.5 font-mono text-sm ${
+              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            → Gửi tin nhắn
+            {isSubmitting ? "Đang gửi..." : "→ Gửi tin nhắn"}
           </button>
 
           {sent && (
-            <p className="text-sm text-muted-foreground font-mono">
-              ✓ Mình đã mở app email của bạn rồi nha!
+            <p className="text-sm text-green-600 font-mono mt-2">
+              ✓ Tin nhắn đã được gửi đến Lộc thành công!
             </p>
           )}
         </form>
