@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 
+// --- 1. IMPORT ẢNH TỪ THƯ MỤC ASSETS ---
+import imgChungNhan from "@/assets/chung-nhan.jpg";
+
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
@@ -25,13 +28,13 @@ const skills = {
   "Kỹ năng mềm": ["Tư duy logic", "Giải quyết vấn đề thực tế", "Làm việc nhóm"],
 };
 
-// 1. Đã thêm thuộc tính 'image' (không bắt buộc) vào mỗi thành tích
 const achievements = [
   {
     year: "Tháng 01/2026",
     title: "Thực tập sinh — Brother BIVN",
     desc: "Tìm hiểu quy trình sản xuất thực tiễn, quy chuẩn RBA và tiếp cận môi trường làm việc công nghiệp.",
-    image: "/chung-nhan.jpg", // Thay bằng tên ảnh thật của bạn
+    // --- 2. SỬ DỤNG BIẾN ẢNH ĐÃ IMPORT Ở TRÊN (Không dùng dấu ngoặc kép) ---
+    image: imgChungNhan, 
   },
 ];
 
@@ -107,7 +110,7 @@ function Resume() {
               <div className="font-bold text-lg mt-1">{a.title}</div>
               <div className="text-sm text-muted-foreground mt-1">{a.desc}</div>
               
-              {/* 2. Phần hiển thị ảnh minh hoạ */}
+              {/* Phần hiển thị ảnh minh hoạ */}
               {a.image && (
                 <div className="mt-3 max-w-sm rounded-md border-[1.5px] border-foreground/30 overflow-hidden bg-white/50">
                   <img
