@@ -31,7 +31,7 @@ const achievements = [
     year: "Tháng 01/2026",
     title: "Thực tập sinh — Brother BIVN",
     desc: "Tìm hiểu quy trình sản xuất thực tiễn, quy chuẩn RBA và tiếp cận môi trường làm việc công nghiệp.",
-    image: "public/images/chung-nhan.jpg", // Thay bằng tên ảnh thật của bạn
+    image: "/images/chung-nhan.jpg", // Thay bằng tên ảnh thật của bạn
   },
 ];
 
